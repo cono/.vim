@@ -1,5 +1,6 @@
 # .vim
-===
+
+My .vim configuration
 
 # Add sub-module
 
