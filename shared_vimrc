@@ -1,0 +1,157 @@
+syntax on
+colorscheme dante
+
+set shiftwidth=4
+
+"noremap <silent> <F5> :%!iconv -f cp1251 -t koi8-u<CR>
+"noremap <silent> <F6> :%!iconv -f koi8-u -t cp1251<CR>
+set backspace=indent,eol,start
+set ttymouse=xterm
+set mouse=a
+set incsearch
+set hidden                      " don't unload buffers
+set browsedir  =current   " which directory to use for the file browser
+set modeline
+
+set termencoding=utf-8
+
+" Enable file type detection.
+" " Use the default filetype settings, so that mail gets 'tw' set to 72,
+" " 'cindent' is on in C files, etc.
+" " Also load indent files, to automatically do language-dependent indenting
+filetype plugin indent on
+
+" status line
+" set statusline=%<%f%h%m%r\ %b\ %{&encoding}\ 0x\ \ %l,%c%V\ %P 
+set statusline=%=%f\ \"%F\"\ %m%R\ [%5l(%3p%%):%3c-(0x%2B,%2b),%Y,%{&encoding}]
+set laststatus=2
+
+set showcmd
+
+set sessionoptions=curdir,buffers,tabpages,winsize
+
+" Nerd tree
+let NERDTreeMouseMode = 3
+let NERDTreeQuitOnOpen = 1
+let NERDTreeShowBookmarks = 1
+
+"" Настройки для SessionMgr
+"let g:SessionMgr_AutoManage = 1
+"let g:SessionMgr_DefaultName = "session"
+"let g:SessionMgr_Dir = "/home/cono/.vim/sessions"
+
+" F6 - previous buffer
+nmap <F6> :bp<cr>
+vmap <F6> <esc>:bp<cr>
+imap <F6> <esc>:bn<cr>
+
+" F7 - next buffer
+nmap <F7> :bn<cr>
+vmap <F7> <esc>:bn<cr>
+imap <F7> <esc>:bn<cr>
+
+" F8 - close quickfix window
+nmap <F8> :cclose<cr>
+vmap <F8> <esc>:cclose<cr>
+imap <F8> <esc>:cclose<cr>
+
+" F10 - close buffer
+nmap <F10> :bd<cr>
+vmap <F10> <esc>:bd<cr>
+imap <F10> <esc>:bd<cr>
+
+" F12 - NERDTreeToggle
+nmap <F12> :NERDTreeToggle<cr>
+vmap <F12> <esc>:NERDTreeToggle<cr>
+imap <F12> <esc>:NERDTreeToggle<cr>
+
+" do not mark brackets
+let loaded_matchparen = 1
+
+" PerlSupport
+
+"let g:Perl_GlobalTemplateFile = "~/.vim/perl-support/templates/Templates"
+
+set completeopt-=preview
+set completeopt+=longest
+set mps-=[:]
+
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+autocmd BufReadPost *
+\ if line("'\"") > 0 && line("'\"") <= line("$") |
+\   exe "normal g`\"" |
+\ endif
+
+augroup FileSettings
+
+        autocmd!
+
+        " setting up for Vim
+        autocmd FileType vim    call LangVim()
+
+        " setting up for Perl
+        autocmd FileType xs     call LangPerl()
+        autocmd FileType perl   call LangPerl()
+
+        " setting up for Java
+        autocmd FileType java   call LangJava()
+
+        " setting up for C/C++
+        autocmd FileType c      call LangC('C')
+        autocmd FileType cpp    call LangC('C')
+
+    " setting up for text files
+    autocmd FileType text   setlocal textwidth=80
+
+augroup END
+
+function DefaultLangSettings()
+    " can set default settings
+	setlocal tabstop=4 shiftwidth=4 softtabstop=4
+	setlocal expandtab autoindent smartindent
+endfunction
+
+function LangVim()
+        call DefaultLangSettings()
+        setlocal noexpandtab
+endfunction
+
+function LangPerl()
+        call DefaultLangSettings()
+endfunction
+
+function LangJava()
+        call DefaultLangSettings()
+endfunction
+
+function LangC(langDialect)
+        call DefaultLangSettings()
+
+        setlocal tabstop=4 shiftwidth=4 softtabstop=4
+        setlocal noexpandtab cindent noautoindent nosmartindent
+
+        setlocal cinoptions=
+endfunction
+
+" Protect large files from sourcing and other overhead.
+" Files become read only
+if !exists("my_auto_commands_loaded")
+	let my_auto_commands_loaded = 1
+	" Large files are > 10M
+	" Set options:
+	" eventignore+=FileType (no syntax highlighting etc
+	" assumes FileType always on)
+	" noswapfile (save copy of file)
+	" bufhidden=unload (save memory when other file is viewed)
+	" buftype=nowritefile (is read-only)
+	" undolevels=-1 (no undo possible)
+	let g:LargeFile = 1024 * 1024 * 10
+	augroup LargeFile
+		autocmd BufReadPre * let f=expand("<afile>") | if getfsize(f) > g:LargeFile | set eventignore+=FileType | setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 | else | set eventignore-=FileType | endif
+		augroup END
+	endif
+
+" Loading other sub-modules
+call pathogen#infect()
