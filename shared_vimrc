@@ -41,14 +41,14 @@ let NERDTreeShowBookmarks = 1
 "let g:SessionMgr_Dir = "/home/cono/.vim/sessions"
 
 " F6 - previous buffer
-nmap <F6> :sbp<cr>
-vmap <F6> <esc>:sbp<cr>
-imap <F6> <esc>:sbn<cr>
+nmap <F6> :bp<cr>
+vmap <F6> <esc>:bp<cr>
+imap <F6> <esc>:bn<cr>
 
 " F7 - next buffer
-nmap <F7> :sbn<cr>
-vmap <F7> <esc>:sbn<cr>
-imap <F7> <esc>:sbn<cr>
+nmap <F7> :bn<cr>
+vmap <F7> <esc>:bn<cr>
+imap <F7> <esc>:bn<cr>
 
 " F8 - close quickfix window
 nmap <F8> :cclose<cr>
