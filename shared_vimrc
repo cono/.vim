@@ -3,6 +3,9 @@ colorscheme dante
 
 set shiftwidth=4
 
+set undofile
+set undodir=~/.vim/undo
+
 "noremap <silent> <F5> :%!iconv -f cp1251 -t koi8-u<CR>
 "noremap <silent> <F6> :%!iconv -f koi8-u -t cp1251<CR>
 set backspace=indent,eol,start
