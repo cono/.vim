@@ -26,7 +26,7 @@ set termencoding=utf-8
 filetype plugin indent on
 
 " status line
-" set statusline=%<%f%h%m%r\ %b\ %{&encoding}\ 0x\ \ %l,%c%V\ %P 
+" set statusline=%<%f%h%m%r\ %b\ %{&encoding}\ 0x\ \ %l,%c%V\ %P
 set statusline=%=%f\ \"%F\"\ %m%R\ [%5l(%3p%%):%3c-(0x%2B,%2b),%Y,%{&encoding}]
 set laststatus=2
 
@@ -106,6 +106,9 @@ augroup FileSettings
         autocmd FileType c      call LangC('C')
         autocmd FileType cpp    call LangC('C')
 
+        autocmd FileType xml    call LangXML('xml')
+        autocmd FileType xsd    call LangXML('xsd')
+
     " setting up for text files
     autocmd FileType text   setlocal textwidth=80
 
@@ -127,6 +130,10 @@ function LangPerl()
 endfunction
 
 function LangJava()
+        call DefaultLangSettings()
+endfunction
+
+function LangXML(langDialect)
         call DefaultLangSettings()
 endfunction
 
