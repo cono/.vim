@@ -159,6 +159,7 @@ if !exists("my_auto_commands_loaded")
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 
 " Loading other sub-modules
 call pathogen#infect()
