@@ -1,4 +1,5 @@
 syntax on
+
 colorscheme dante
 
 set shiftwidth=4
@@ -155,6 +156,9 @@ if !exists("my_auto_commands_loaded")
 		autocmd BufReadPre * let f=expand("<afile>") | if getfsize(f) > g:LargeFile | set eventignore+=FileType | setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 | else | set eventignore-=FileType | endif
 		augroup END
 	endif
+
+" Airline
+let g:airline#extensions#tabline#enabled = 1
 
 " Loading other sub-modules
 call pathogen#infect()
