@@ -102,6 +102,8 @@ augroup FileSettings
         " setting up for Java
         autocmd FileType java   call LangJava()
 
+        autocmd FileType javascript   call LangJavaScript()
+
         " setting up for C/C++
         autocmd FileType c      call LangC('C')
         autocmd FileType cpp    call LangC('C')
@@ -130,6 +132,10 @@ function LangPerl()
 endfunction
 
 function LangJava()
+        call DefaultLangSettings()
+endfunction
+
+function LangJavaScript()
         call DefaultLangSettings()
 endfunction
 
@@ -167,6 +173,11 @@ if !exists("my_auto_commands_loaded")
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+
+" incsearch
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
 
 " Loading other sub-modules
 call pathogen#infect()
