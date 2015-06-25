@@ -68,6 +68,21 @@ imap <F12> <esc>:NERDTreeToggle<cr>
 " do not mark brackets
 let loaded_matchparen = 1
 
+function DevelCover()
+	let l:path = expand("%:p:h")
+	let l:dzil_ini = findfile("dist.ini", l:path . ";/")
+	let l:path = fnamemodify(l:dzil_ini, ":p:h")
+	exe "cd " . l:path
+	let l:vim_cover = system("dzil cover -report vim 2>&1 | grep -E '\\.vim$' | perl -aple '$_=$F[-1]'")
+	exe "source " . l:vim_cover
+	redraw!
+	cd -
+endfunction
+
+nmap <LocalLeader>dc :call DevelCover()<cr>
+vmap <LocalLeader>dc <esc>:call DevelCover()<cr>
+imap <LocalLeader>dc <esc>:call DevelCover()<cr>
+
 " PerlSupport
 
 "let g:Perl_GlobalTemplateFile = "~/.vim/perl-support/templates/Templates"
