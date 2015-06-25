@@ -1,7 +1,11 @@
 syntax on
+
 colorscheme dante
 
 set shiftwidth=4
+
+set undofile
+set undodir=~/.vim/undo
 
 "noremap <silent> <F5> :%!iconv -f cp1251 -t koi8-u<CR>
 "noremap <silent> <F6> :%!iconv -f koi8-u -t cp1251<CR>
@@ -22,7 +26,7 @@ set termencoding=utf-8
 filetype plugin indent on
 
 " status line
-" set statusline=%<%f%h%m%r\ %b\ %{&encoding}\ 0x\ \ %l,%c%V\ %P 
+" set statusline=%<%f%h%m%r\ %b\ %{&encoding}\ 0x\ \ %l,%c%V\ %P
 set statusline=%=%f\ \"%F\"\ %m%R\ [%5l(%3p%%):%3c-(0x%2B,%2b),%Y,%{&encoding}]
 set laststatus=2
 
@@ -113,9 +117,14 @@ augroup FileSettings
         " setting up for Java
         autocmd FileType java   call LangJava()
 
+        autocmd FileType javascript   call LangJavaScript()
+
         " setting up for C/C++
         autocmd FileType c      call LangC('C')
         autocmd FileType cpp    call LangC('C')
+
+        autocmd FileType xml    call LangXML('xml')
+        autocmd FileType xsd    call LangXML('xsd')
 
     " setting up for text files
     autocmd FileType text   setlocal textwidth=80
@@ -138,6 +147,14 @@ function LangPerl()
 endfunction
 
 function LangJava()
+        call DefaultLangSettings()
+endfunction
+
+function LangJavaScript()
+        call DefaultLangSettings()
+endfunction
+
+function LangXML(langDialect)
         call DefaultLangSettings()
 endfunction
 
@@ -167,6 +184,15 @@ if !exists("my_auto_commands_loaded")
 		autocmd BufReadPre * let f=expand("<afile>") | if getfsize(f) > g:LargeFile | set eventignore+=FileType | setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 | else | set eventignore-=FileType | endif
 		augroup END
 	endif
+
+" Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
+" incsearch
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
 
 " Loading other sub-modules
 call pathogen#infect()
