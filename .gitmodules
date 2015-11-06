@@ -28,3 +28,6 @@
 [submodule "bundle/incsearch.vim"]
 	path = bundle/incsearch.vim
 	url = https://github.com/haya14busa/incsearch.vim
+[submodule "bundle/vim-livedown"]
+	path = bundle/vim-livedown
+	url = git@github.com:shime/vim-livedown.git
