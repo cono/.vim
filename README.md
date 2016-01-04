@@ -6,8 +6,9 @@ My .vim configuration
 
 ```shell
 cd ~
-echo "source ~/.vim/shared_vimrc" >> ~/.vimrc
 git clone https://github.com/cono/.vim.git .vim
+echo "source ~/.vim/shared_vimrc" >> ~/.vimrc
+cd .vim
 git submodule update --init
 ```
 
