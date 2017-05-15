@@ -44,6 +44,9 @@ let NERDTreeShowBookmarks = 1
 "let g:SessionMgr_DefaultName = "session"
 "let g:SessionMgr_Dir = "/home/cono/.vim/sessions"
 
+" encryption
+set cm=blowfish2
+
 " F6 - previous buffer
 nmap <F6> :bp<cr>
 vmap <F6> <esc>:bp<cr>
@@ -58,6 +61,11 @@ imap <F7> <esc>:bn<cr>
 nmap <F8> :cclose<cr>
 vmap <F8> <esc>:cclose<cr>
 imap <F8> <esc>:cclose<cr>
+
+" F9 - close quickfix window
+nmap <F9> :copen<cr>
+vmap <F9> <esc>:copen<cr>
+imap <F9> <esc>:copen<cr>
 
 " F10 - close buffer
 nmap <F10> :bd<cr>
@@ -193,6 +201,18 @@ let g:airline_powerline_fonts = 1
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
+
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+
+" CtrlP
+let g:ctrlp_working_path_mode = 'ra'
 
 " BufExplorer
 let g:bufExplorerSortBy='fullpath'
