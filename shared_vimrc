@@ -1,3 +1,22 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'kien/ctrlp.vim'
+Plugin 'haya14busa/incsearch.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-scripts/perl-support.vim'
+Plugin 'vim-perl/vim-perl'
+Plugin 'vim-airline/vim-airline'
+Plugin 'tpope/vim-fugitive'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+
 syntax on
 
 colorscheme dante
@@ -121,6 +140,7 @@ augroup FileSettings
         " setting up for Perl
         autocmd FileType xs     call LangPerl()
         autocmd FileType perl   call LangPerl()
+        autocmd FileType perl6  call LangPerl()
 
         " setting up for Java
         autocmd FileType java   call LangJava()
@@ -216,6 +236,3 @@ let g:ctrlp_working_path_mode = 'ra'
 
 " BufExplorer
 let g:bufExplorerSortBy='fullpath'
-
-" Loading other sub-modules
-call pathogen#infect()
