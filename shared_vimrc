@@ -12,7 +12,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'haya14busa/incsearch.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/perl-support.vim'
-Plugin 'vim-perl/vim-perl'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-fugitive'
 
