@@ -192,7 +192,7 @@ function LangC(langDialect)
         call DefaultLangSettings()
 
         setlocal tabstop=4 shiftwidth=4 softtabstop=4
-        setlocal noexpandtab cindent noautoindent nosmartindent
+        setlocal cindent
 
         setlocal cinoptions=
 endfunction
