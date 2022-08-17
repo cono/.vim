@@ -15,6 +15,7 @@ Plugin 'vim-scripts/perl-support.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'hashivim/vim-terraform'
+Plugin 'tpope/vim-commentary'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -238,3 +239,6 @@ let g:ctrlp_working_path_mode = 'ra'
 
 " BufExplorer
 let g:bufExplorerSortBy='fullpath'
+
+" Commentary
+noremap <C-_> :Commentary<cr>
