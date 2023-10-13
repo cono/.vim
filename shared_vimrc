@@ -136,30 +136,31 @@ autocmd BufReadPost *
 
 augroup FileSettings
 
-        autocmd!
+    autocmd!
 
-        " setting up for Vim
-        autocmd FileType vim    call LangVim()
+    " setting up for Vim
+    autocmd FileType vim    call LangVim()
 
-        " setting up for Perl
-        autocmd FileType xs     call LangPerl()
-        autocmd FileType perl   call LangPerl()
-        autocmd FileType perl6  call LangPerl()
+    " setting up for Perl
+    autocmd FileType xs     call LangPerl()
+    autocmd FileType perl   call LangPerl()
+    autocmd FileType perl6  call LangPerl()
 
-        " setting up for Java
-        autocmd FileType java   call LangJava()
+    " setting up for Java
+    autocmd FileType java   call LangJava()
 
-        autocmd FileType javascript   call LangJavaScript()
+    autocmd FileType javascript   call LangJavaScript()
 
-        " setting up for C/C++
-        autocmd FileType c      call LangC('C')
-        autocmd FileType cpp    call LangC('C')
+    " setting up for C/C++
+    autocmd FileType c      call LangC('C')
+    autocmd FileType cpp    call LangC('C')
 
-        autocmd FileType xml    call LangXML('xml')
-        autocmd FileType xsd    call LangXML('xsd')
+    autocmd FileType xml    call LangXML('xml')
+    autocmd FileType xsd    call LangXML('xsd')
 
     " setting up for text files
     autocmd FileType text   setlocal textwidth=80
+    autocmd FileType * call DefaultLangSettings()
 
 augroup END
 
