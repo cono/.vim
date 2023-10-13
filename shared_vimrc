@@ -145,6 +145,7 @@ augroup FileSettings
     autocmd FileType xs     call LangPerl()
     autocmd FileType perl   call LangPerl()
     autocmd FileType perl6  call LangPerl()
+    autocmd FileType raku   call LangPerl()
 
     " setting up for Java
     autocmd FileType java   call LangJava()
@@ -160,7 +161,6 @@ augroup FileSettings
 
     " setting up for text files
     autocmd FileType text   setlocal textwidth=80
-    autocmd FileType * call DefaultLangSettings()
 
 augroup END
 
