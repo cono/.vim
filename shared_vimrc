@@ -11,8 +11,8 @@ Plugin 'jlanzarotta/bufexplorer'
 Plugin 'kien/ctrlp.vim'
 Plugin 'haya14busa/incsearch.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'vim-scripts/perl-support.vim'
 Plugin 'vim-airline/vim-airline'
+Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'tpope/vim-fugitive'
 Plugin 'hashivim/vim-terraform'
 Plugin 'tpope/vim-commentary'
@@ -118,10 +118,6 @@ nmap <LocalLeader>dc :call DevelCover()<cr>
 vmap <LocalLeader>dc <esc>:call DevelCover()<cr>
 imap <LocalLeader>dc <esc>:call DevelCover()<cr>
 
-" PerlSupport
-
-"let g:Perl_GlobalTemplateFile = "~/.vim/perl-support/templates/Templates"
-
 set completeopt-=preview
 set completeopt+=longest
 set mps-=[:]
@@ -151,6 +147,9 @@ augroup FileSettings
     autocmd FileType java   call LangJava()
 
     autocmd FileType javascript   call LangJavaScript()
+
+    " setting up for Python
+    autocmd FileType python call LangPython()
 
     " setting up for C/C++
     autocmd FileType c      call LangC('C')
@@ -184,6 +183,10 @@ function LangJava()
 endfunction
 
 function LangJavaScript()
+        call DefaultLangSettings()
+endfunction
+
+function LangPython()
         call DefaultLangSettings()
 endfunction
 
@@ -244,3 +247,26 @@ let g:bufExplorerSortBy='fullpath'
 
 " Commentary
 noremap <C-_> :Commentary<cr>
+
+" gutentags: auto-manage tags files
+" Project root markers - .git is enough for most repos; add WORKSPACE/MODULE.bazel for bazel projects
+let g:gutentags_project_root = ['.git', 'WORKSPACE', 'WORKSPACE.bazel', 'MODULE.bazel']
+" Keep tags out of the source tree
+let g:gutentags_cache_dir = expand('~/.vim/tags_cache')
+" Exclude bazel output symlinks and common noise
+let g:gutentags_ctags_exclude = [
+    \ 'bazel-*',
+    \ '.git',
+    \ 'node_modules',
+    \ '*.min.js',
+    \ 'build',
+    \ 'dist',
+    \ '__pycache__',
+    \ '*.pyc',
+    \ ]
+" Skip gutentags for temp/fugitive buffers
+let g:gutentags_exclude_filetypes = ['gitcommit', 'gitrebase']
+
+" Jump to tag splits: <C-]> already built-in; add convenience mappings
+" <leader>] opens definition in a vertical split
+nnoremap <leader>] :vsp<CR>:exec("tag ".expand("<cword>"))<CR>
