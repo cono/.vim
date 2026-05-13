@@ -8,7 +8,8 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'jlanzarotta/bufexplorer'
-Plugin 'kien/ctrlp.vim'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 Plugin 'haya14busa/incsearch.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
@@ -21,6 +22,8 @@ Plugin 'easymotion/vim-easymotion'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
+let mapleader = " "
 
 syntax on
 
@@ -240,8 +243,12 @@ map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
-" CtrlP
-let g:ctrlp_working_path_mode = 'ra'
+" fzf.vim
+nnoremap <leader>f :Files<cr>
+nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>r :Rg<cr>
+nnoremap <leader>l :Lines<cr>
+nnoremap <leader>t :Tags<cr>
 
 " BufExplorer
 let g:bufExplorerSortBy='fullpath'
