@@ -103,6 +103,9 @@ imap <F10> <esc>:bd<cr>
 nmap <F12> :NERDTreeToggle<cr>
 vmap <F12> <esc>:NERDTreeToggle<cr>
 imap <F12> <esc>:NERDTreeToggle<cr>
+" Shift-F12 / <leader>n - open NERDTree and reveal the current buffer's file
+nmap <S-F12> :NERDTreeFind<cr>
+nnoremap <leader>n :NERDTreeFind<cr>
 
 " do not mark brackets
 let loaded_matchparen = 1
@@ -271,6 +274,12 @@ let g:gutentags_ctags_exclude = [
     \ 'dist',
     \ '__pycache__',
     \ '*.pyc',
+    \ ]
+" Map .tsx -> TypeScript and .jsx -> JavaScript (ctags only maps .ts/.js by default,
+" so .tsx/.jsx source is silently skipped without these)
+let g:gutentags_ctags_extra_args = [
+    \ '--langmap=TypeScript:+.tsx',
+    \ '--langmap=JavaScript:+.jsx',
     \ ]
 " Skip gutentags for temp/fugitive buffers
 let g:gutentags_exclude_filetypes = ['gitcommit', 'gitrebase']
